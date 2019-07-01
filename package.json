@@ -8,8 +8,7 @@
   },
   "scripts": {
     "test": "./ts-run test.ts",
-    "commit": "web-scripts commit",
-    "release": "web-scripts release"
+    "commit": "web-scripts commit"
   },
   "files": [
     "ts-run",
