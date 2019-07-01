@@ -1,5 +1,5 @@
 {
-  "name": "ts-run",
+  "name": "@kirbysayshi/ts-run",
   "version": "0.0.0",
   "description": "Run TypeScript in node directly, via Babel.",
   "main": "ts-run",
