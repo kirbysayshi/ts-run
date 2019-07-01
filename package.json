@@ -1,0 +1,49 @@
+{
+  "name": "ts-run",
+  "version": "0.0.0",
+  "description": "Run TypeScript in node directly, via Babel.",
+  "main": "ts-run",
+  "bin": {
+    "ts-run": "ts-run"
+  },
+  "scripts": {
+    "test": "./ts-run test.ts",
+    "commit": "web-scripts commit",
+    "release": "web-scripts release"
+  },
+  "files": [
+    "ts-run",
+    ".babelrc"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "web-scripts commitmsg",
+      "pre-commit": "web-scripts precommit"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirbysayshi/ts-run.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "Babel",
+    "tools"
+  ],
+  "author": "Drew Petersen <kirbysayshi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kirbysayshi/ts-run/issues"
+  },
+  "homepage": "https://github.com/kirbysayshi/ts-run#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.4.4"
+  },
+  "devDependencies": {
+    "@spotify/web-scripts": "^1.0.2",
+    "husky": "^2.7.0"
+  }
+}
