@@ -2,6 +2,10 @@
 
 Execute TypeScript using babel-register and zero-config. Uses [preset-env](https://babeljs.io/docs/en/babel-preset-env) to target the currently running version of node, so you don't need to worry about feature support either!
 
+Keep in mind that Babel does not check types, it simply strips them out and transpiles.
+
+This package is targeted towards writing either one-off scripts, or tooling scripts for another project.
+
 # Usage
 
 ```
@@ -19,6 +23,8 @@ or in the folder via:
 ```
 $ npx ts-run
 ```
+
+To get typechecking in your editor, ensure there is a reasonable `tsconfig.json` file near the files you intend to run, and that the `include` setting matches those files.
 
 # License
 
