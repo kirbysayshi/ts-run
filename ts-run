@@ -1,42 +1,7 @@
-#!/usr/bin/env node
 
-const path = require('path');
-const { spawn } = require('child_process');
+# Get the current directory so we can create an absolute path to the bootstrap
+# https://stackoverflow.com/a/1482133/169491
+THIS_PACKAGE=$(dirname "$0")
+BOOTSTRAP_PATH="$THIS_PACKAGE/bootstrap.js"
 
-// Grab the remaining arguments, excluding `node ts-run`
-const argv = process.argv.slice(2);
-
-// Find the argument, if any, that is not an option.
-const targetModuleIdx = argv.findIndex(arg => arg[0] !== '-' && arg[1] !== '-');
-
-// TODO: this may be overkill, what if someone just wants to run with `-e`?
-// That would actually fail with the approach below.
-if (targetModuleIdx === -1)
-  throw new Error('Could not find .ts in argument list!');
-
-// Create an absolute path to the given file, since we have to `require` it later.
-const targetModule = path.join(process.cwd(), argv[targetModuleIdx]);
-
-// Splice! If the `startIndex` + `deleteCount` === arr.length - 1, then
-// instead it deletes from the end of the array. :facepalm:
-const nextArgv =
-  targetModuleIdx === argv.length - 1
-    ? argv.slice(0, targetModuleIdx)
-    : argv.splice(targetModuleIdx, 1);
-
-// Create a string to eval using node. We do this to allow the user to pass
-// flags to the node binary, such as --prof or --debug.
-const bootstrap = `
-require('@babel/register')({
-  extensions: [".ts", ".tsx", ".es6", ".es", ".jsx", ".js", ".mjs"],
-  extends: ${JSON.stringify(path.join(__dirname, '.babelrc'))},
-  // Must specify custom ignore to prevent babel from ignoring everything outside CWD by default.
-  // https://github.com/babel/babel/issues/8321#issuecomment-464932499
-  ignore: [/node_modules/],
-});
-
-require(${JSON.stringify(targetModule)});
-`;
-
-nextArgv.push('-e', bootstrap);
-spawn('node', nextArgv, { stdio: 'inherit' });
+node -r $BOOTSTRAP_PATH $@
