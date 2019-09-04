@@ -15,8 +15,9 @@
     "commit": "web-scripts commit"
   },
   "files": [
-    "ts-run",
-    ".babelrc"
+    ".babelrc",
+    "ts-run-bootstrap.js",
+    "ts-run"
   ],
   "husky": {
     "hooks": {
