@@ -1,7 +1,25 @@
+#!/bin/bash
 
-# Get the current directory so we can create an absolute path to the bootstrap
-# https://stackoverflow.com/a/1482133/169491
-THIS_PACKAGE=$(dirname "$0")
-BOOTSTRAP_PATH="$THIS_PACKAGE/bootstrap.js"
+set -e
 
+# create a script to find an absolute path to the bootstrap script
+# this file could be in node_modules/.bin/ or in node_modules/@kirbysayshi,
+# so we cannot use relative paths.
+RESOLVER=$(cat <<-END
+let p=null;
+try {
+  p = require.resolve("./ts-run-bootstrap.js")
+} catch (e) {
+  p = require.resolve("@kirbysayshi/ts-run/ts-run-bootstrap.js")
+};
+p
+END
+)
+# the above ) must be on a new line because `END` must be on a single line
+# by itself to interpreted correctly as a HEREDOC
+
+# find the bootstrap path
+BOOTSTRAP_PATH=$(node -p "$RESOLVER")
+
+# execute the actual TS
 node -r $BOOTSTRAP_PATH $@
