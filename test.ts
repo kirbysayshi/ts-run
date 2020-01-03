@@ -5,6 +5,7 @@ type Person = {
   age: number;
 };
 
+// eslint-disable-next-line no-unused-vars
 const p: Person = {
   name: 'Sonic the Hedgehog',
   // sonic is ageless
@@ -21,6 +22,7 @@ function* aGenerator() {
 const gen = aGenerator();
 const values: number[] = [];
 for (let i = 0; i < 5; i++) {
-  values.push(gen.next().value);
+  const val = gen.next().value;
+  if (val) values.push(val);
 }
 assert.deepEqual(values, [0, 1, 2, 3, 4]);
