@@ -23,6 +23,6 @@ const gen = aGenerator();
 const values: number[] = [];
 for (let i = 0; i < 5; i++) {
   const val = gen.next().value;
-  if (val) values.push(val);
+  values.push(Number(val));
 }
 assert.deepEqual(values, [0, 1, 2, 3, 4]);
