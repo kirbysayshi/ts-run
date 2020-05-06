@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "./ts-run test.ts",
-    "lint": "web-scripts lint",
+    "lint": "web-scripts lint --no-typecheck --no-stylecheck",
     "commit": "web-scripts commit",
     "release": "web-scripts release"
   },
