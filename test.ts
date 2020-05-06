@@ -1,4 +1,5 @@
 import * as assert from 'assert';
+import { exportedFunction } from './import.test';
 
 type Person = {
   name: string;
@@ -26,3 +27,5 @@ for (let i = 0; i < 5; i++) {
   values.push(Number(val));
 }
 assert.deepEqual(values, [0, 1, 2, 3, 4]);
+
+assert.equal(exportedFunction(), 'hello');
