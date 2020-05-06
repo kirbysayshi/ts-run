@@ -42,10 +42,10 @@
   },
   "homepage": "https://github.com/kirbysayshi/ts-run#readme",
   "dependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-typescript": "^7.3.3",
-    "@babel/register": "^7.5.5"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/register": "^7.9.0"
   },
   "devDependencies": {
     "@spotify/web-scripts": "^4.0.2",
