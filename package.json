@@ -48,7 +48,7 @@
     "@babel/register": "^7.10.3"
   },
   "devDependencies": {
-    "@spotify/web-scripts": "^7.0.0",
+    "@spotify/web-scripts": "^7.0.2",
     "husky": "^4.2.5"
   }
 }
