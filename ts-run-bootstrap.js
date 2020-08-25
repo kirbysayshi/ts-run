@@ -15,4 +15,9 @@ require('@babel/register')({
   // feature. This was problematic when dealing with create-react-app's
   // react-app preset, which THROWS if NODE_ENV is unset.
   babelrc: !!process.env.TS_RUN_BABELRC,
+  // We _probably_ don't want to use the local babel config file, since that is
+  // usually geared towards a browser target.
+  configFile: process.env.TS_RUN_CONFIGFILE
+    ? process.env.TS_RUN_CONFIGFILE
+    : false,
 });

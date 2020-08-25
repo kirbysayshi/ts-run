@@ -26,12 +26,16 @@ $ npx ts-run
 
 To get typechecking in your editor, ensure there is a reasonable `tsconfig.json` file near the files you intend to run, and that the `include` setting matches those files.
 
-## babelrc
+## babelrc / babel.config.js
 
-There are some cases where you may wish to use local babelrc file resolution, which [Babel normally does](https://babeljs.io/docs/en/options#babelrc). ts-run, by default, disables this behavior to avoid surprises. To re-enable, use the `TS_RUN_BABELRC` env variable:
+There are some cases where you may wish to use local babelrc or babel.config.js file resolution, which [Babel normally does](https://babeljs.io/docs/en/options#babelrc). ts-run, by default, disables this behavior to avoid surprises. To re-enable, use the `TS_RUN_BABELRC` env variable (for babelrc) or `TS_RUN_CONFIGFILE` (for babel.config.js):
 
-```
+```sh
 $ TS_RUN_BABELRC=true npx ts-run
+```
+
+```sh
+$ TS_RUN_CONFIGFILE=${PWD}/babel.config.js npx ts-run
 ```
 
 # License
