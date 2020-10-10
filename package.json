@@ -10,7 +10,7 @@
     "ts-run": "ts-run"
   },
   "scripts": {
-    "test": "./ts-run test.ts",
+    "test": "./ts-run test.ts --unhandled-rejections strict",
     "lint": "web-scripts lint --no-typecheck --no-stylecheck",
     "commit": "web-scripts commit",
     "release": "web-scripts release"
@@ -42,13 +42,13 @@
   },
   "homepage": "https://github.com/kirbysayshi/ts-run#readme",
   "dependencies": {
-    "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
-    "@babel/register": "^7.10.5"
+    "@babel/register": "^7.11.5"
   },
   "devDependencies": {
-    "@spotify/web-scripts": "^8.0.3",
-    "husky": "^4.2.5"
+    "@spotify/web-scripts": "^8.1.1",
+    "husky": "^4.3.0"
   }
 }
