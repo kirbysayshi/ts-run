@@ -2,6 +2,10 @@
 
 set -e
 
+if ! [ -z "$TS_RUN_DEBUG" ]; then
+ set -x
+fi
+
 # create a script to find an absolute path to the bootstrap script
 # this file could be in node_modules/.bin/ or in node_modules/@kirbysayshi,
 # so we cannot use relative paths.
@@ -22,4 +26,4 @@ END
 BOOTSTRAP_PATH=$(node -p "$RESOLVER")
 
 # execute the actual TS
-node -r $BOOTSTRAP_PATH $@
+node -r $BOOTSTRAP_PATH "$@"
