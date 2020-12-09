@@ -6,13 +6,18 @@ if ! [ -z "$TS_RUN_DEBUG" ]; then
  set -x
 fi
 
+# Attempt to find the location of _this_ script so we can relatively require the
+# bootstrap. This is mainly useful for npx.
+SCRIPT_PATH=$(cd `dirname ${0}`; pwd)
+
 # create a script to find an absolute path to the bootstrap script
 # this file could be in node_modules/.bin/ or in node_modules/@kirbysayshi,
 # so we cannot use relative paths.
 RESOLVER=$(cat <<-END
+const path = require('path');
 let p=null;
 try {
-  p = require.resolve("./ts-run-bootstrap.js")
+  p = require.resolve(path.join("${SCRIPT_PATH}", "./ts-run-bootstrap.js"))
 } catch (e) {
   p = require.resolve("@kirbysayshi/ts-run/ts-run-bootstrap.js")
 };
