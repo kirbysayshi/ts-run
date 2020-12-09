@@ -14,13 +14,34 @@ SCRIPT_PATH=$(cd `dirname ${0}`; pwd)
 # this file could be in node_modules/.bin/ or in node_modules/@kirbysayshi,
 # so we cannot use relative paths.
 RESOLVER=$(cat <<-END
-const path = require('path');
+const path = require("path");
 let p=null;
-try {
-  p = require.resolve(path.join("${SCRIPT_PATH}", "./ts-run-bootstrap.js"))
-} catch (e) {
-  p = require.resolve("@kirbysayshi/ts-run/ts-run-bootstrap.js")
-};
+
+// Normal case, in local node_modules
+const root = path.join("${SCRIPT_PATH}", "./ts-run-bootstrap.js");
+
+// npx case: npx creates a bin and lib folder
+const npxRoot = root
+  .split(path.sep)
+  .map(p => p === "bin" ? "lib" : p)
+  .join(path.sep);
+
+// last chance, try for node_modules somewhere in the tree
+const nmRoot = "@kirbysayshi/ts-run/ts-run-bootstrap.js";
+
+const paths = [root, npxRoot, nmRoot];
+
+if (process.env.TS_RUN_DEBUG) {
+  console.warn("Trying paths: \n" + paths.join('\n'))
+}
+
+for (let i = 0; i < paths.length; i++) {
+  try {
+    p = require.resolve(paths[i]);
+  } catch (e) {}
+}
+
+if (!p) throw new Error("Could not resolve ts-run-boostrap.js. Tried: \n" + paths.join("\n"));
 p
 END
 )
