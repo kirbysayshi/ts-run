@@ -17,19 +17,26 @@ RESOLVER=$(cat <<-END
 const path = require("path");
 let p=null;
 
-// Normal case, in local node_modules
-const root = path.join("${SCRIPT_PATH}", "./ts-run-bootstrap.js");
+const root = path.join("${SCRIPT_PATH}");
 
-// npx case: npx creates a bin and lib folder
-const npxRoot = root
-  .split(path.sep)
-  .map(p => p === "bin" ? "lib" : p)
-  .join(path.sep);
+const paths = [
+  // Normal case, in local node_modules
+  path.join(root, "./ts-run-bootstrap.js"),
 
-// last chance, try for node_modules somewhere in the tree
-const nmRoot = "@kirbysayshi/ts-run/ts-run-bootstrap.js";
+  // npx case: npx creates a bin and lib folder with node_modules inside
+  path.join(
+    root
+      .split(path.sep)
+      .map(p => p === "bin" ? "lib" : p)
+      .join(path.sep),
+    "node_modules",
+    "@kirbysayshi",
+    "ts-run",
+    "ts-run-bootstrap.js"),
 
-const paths = [root, npxRoot, nmRoot];
+  // last chance, try for node_modules somewhere in the tree
+  "@kirbysayshi/ts-run/ts-run-bootstrap.js"
+];
 
 if (process.env.TS_RUN_DEBUG) {
   console.warn("Trying paths: \n" + paths.join('\n'))
