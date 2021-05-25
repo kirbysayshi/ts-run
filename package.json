@@ -13,19 +13,14 @@
     "test": "./ts-run test.ts --unhandled-rejections strict",
     "lint": "web-scripts lint --no-typecheck --no-stylecheck",
     "commit": "web-scripts commit",
-    "release": "web-scripts release"
+    "release": "web-scripts release",
+    "prepare": "husky install"
   },
   "files": [
     ".babelrc",
     "ts-run-bootstrap.js",
     "ts-run"
   ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "web-scripts commitmsg",
-      "pre-commit": "web-scripts precommit --no-tests --no-typecheck"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kirbysayshi/ts-run.git"
@@ -49,6 +44,6 @@
   },
   "devDependencies": {
     "@spotify/web-scripts": "^8.1.1",
-    "husky": "^4.3.0"
+    "husky": "^6.0.0"
   }
 }
