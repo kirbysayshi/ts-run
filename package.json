@@ -2,13 +2,12 @@
   "name": "@kirbysayshi/ts-run",
   "version": "0.0.0",
   "description": "Run TypeScript in node directly, via Babel.",
-  "main": "ts-run",
+  "main": "./index.js",
   "publishConfig": {
     "access": "public"
   },
-  "bin": "ts-run",
   "scripts": {
-    "test": "./ts-run test.ts --unhandled-rejections strict",
+    "test": "node -r ./index.js test.transpile.ts --unhandled-rejections strict && node test.exec.js --unhandled-rejections strict",
     "lint": "web-scripts lint --no-typecheck --no-stylecheck",
     "commit": "web-scripts commit",
     "release": "web-scripts release",
@@ -16,7 +15,6 @@
   },
   "files": [
     ".babelrc",
-    "ts-run-bootstrap.js",
     "ts-run"
   ],
   "repository": {
@@ -42,6 +40,8 @@
   },
   "devDependencies": {
     "@spotify/web-scripts": "^11.0.0",
-    "husky": "^7.0.1"
+    "@types/node": "16",
+    "husky": "^7.0.1",
+    "typescript": "^4.3.5"
   }
 }
