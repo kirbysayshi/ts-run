@@ -26,9 +26,9 @@ for (let i = 0; i < 5; i++) {
   const val = gen.next().value;
   values.push(Number(val));
 }
-assert.deepEqual(values, [0, 1, 2, 3, 4]);
+assert.deepStrictEqual(values, [0, 1, 2, 3, 4]);
 
-assert.equal(exportedFunction(), 'hello');
+assert.strictEqual(exportedFunction(), 'hello');
 
 if (require.main !== module) {
   throw new Error('Main is not the module!');
