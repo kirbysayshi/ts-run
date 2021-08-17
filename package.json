@@ -6,9 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "ts-run": "ts-run"
-  },
+  "bin": "ts-run",
   "scripts": {
     "test": "./ts-run test.ts --unhandled-rejections strict",
     "lint": "web-scripts lint --no-typecheck --no-stylecheck",
