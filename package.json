@@ -15,7 +15,8 @@
   },
   "files": [
     ".babelrc",
-    "ts-run"
+    "index.js",
+    "yarn.lock"
   ],
   "repository": {
     "type": "git",
