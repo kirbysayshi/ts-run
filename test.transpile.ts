@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { exportedFunction } from './import.test';
+import { exportedFunction } from './test.import';
 
 type Person = {
   name: string;
